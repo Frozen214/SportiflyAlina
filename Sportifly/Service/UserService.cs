@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-
 namespace Sportifly.Service
 {
     public class UserService : IUserService

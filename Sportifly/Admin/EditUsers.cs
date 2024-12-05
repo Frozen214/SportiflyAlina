@@ -1,110 +1,88 @@
-﻿using Guna.UI2.WinForms;
-using Sportifly.Classes;
+﻿using Sportifly.Classes;
+using Sportifly.Model;
+using Sportifly.Repository;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sportifly.Admin
 {
     public partial class EditUsers : Form
     {
-        public string CurrIDUser; // Идентификатор пользователя
-        DB db; // Объект для работы с базой данных
+        private DataBase db { get; set; } = new DataBase();
+        private UserRepository UserRepository { get; set; } = new UserRepository();
+        private UserModel UserModel { get; set; }
+        private AllUsers AllUsers { get; set; }
+        private int Option { get; set; }
 
-        public EditUsers() // Конструктор формы
+        public EditUsers(int option, UserModel userModel, AllUsers allUsers)
         {
-            db = new DB();
             InitializeComponent();
+            AllUsers = allUsers;
+            UserModel = userModel;
+            Option = option;
         }
 
-        public string LastName // Свойство для Фамилии
+        private void pictureBox3_Click(object sender, EventArgs e)
         {
-            get { return guna2TextBox11.Text; }
-            set { guna2TextBox11.Text = value; }
+            Hide();
         }
 
-        public string FirstName // Свойство для Имени
-        {
-            get { return guna2TextBox10.Text; }
-            set { guna2TextBox10.Text = value; }
-        }
-
-        public string MiddleName // Свойство для Отчества
-        {
-            get { return guna2TextBox3.Text; }
-            set { guna2TextBox3.Text = value; }
-        }
-        public string Email // Свойство для Почты
-        {
-            get { return guna2TextBox4.Text; }
-            set { guna2TextBox4.Text = value; }
-        }
-        public string PhoneNumber // Свойство для Номера телефона
-        {
-            get { return guna2TextBox5.Text; }
-            set { guna2TextBox5.Text = value; }
-        }
-
-        public string Role 
-        {
-            get { return guna2ComboBox1.SelectedItem?.ToString() ?? string.Empty; }
-            set
-            {
-                if (guna2ComboBox1.Items.Contains(value))
-                {
-                    guna2ComboBox1.SelectedItem = value;
-                }
-            }
-        }
-        private void FillComboBoxes()
-        {// Заполняем ComboBox1 ролями
-            string roleQuery = "SELECT [ID роли], [Название роли] FROM Роли";
-            db.FillComboBox(roleQuery, "Название роли", guna2ComboBox1);
-            guna2ComboBox1.DisplayMember = "Название роли"; // Название роли для отображения
-            guna2ComboBox1.ValueMember = "ID роли";          // ID роли как внутреннее значение
-
-        }
         private void EditUsers_Load(object sender, EventArgs e)
         {
-
+            LoadCombobox();
+            if (Option == 1)
+            {
+                guna2Button5.Text = "Добавить";
+                label1.Text = "Добавление";
+            }
+            else
+            {
+                guna2TextBox11.Text = UserModel.UserLogin;
+                guna2TextBox10.Text = UserModel.UserPassword;
+                guna2ComboBox1.SelectedValue = UserModel.RoleId;
+                guna2Button5.Text = "Изменить";
+                label1.Text = "Изменение";
+            }
         }
 
-        private void guna2Button5_Click(object sender, EventArgs e)
+        private void LoadCombobox()
         {
-            try
-            {
-                // Получаем значение роли в зависимости от выбранного текста в ComboBox
-                int roleId = 0;
+            guna2ComboBox1.DataSource = UserRepository.GetRoleAll();
+            guna2ComboBox1.DisplayMember = "Название роли";
+            guna2ComboBox1.ValueMember = "ID Роли";
+            guna2ComboBox1.SelectedIndex = 0;
+        }
 
-                if (guna2ComboBox1.Text == "Клиент")
+        private async void guna2Button5_Click(object sender, EventArgs e)
+        {
+            UserModel user = new UserModel()
+            {
+                UserId = UserModel.UserId,
+                UserPassword = guna2TextBox10.Text,
+                UserLogin = guna2TextBox11.Text,
+                RoleId = (int)guna2ComboBox1.SelectedValue,
+            };
+
+            if (Option == 1)
+            {
+                if (UserRepository.CreateUser(user))
                 {
-                    roleId = 1;
-                }
-                else if (guna2ComboBox1.Text == "Тренер")
-                {
-                    roleId = 2;
-                }
-                else if (guna2ComboBox1.Text == "Администратор")
-                {
-                    roleId = 3;
-                }
-                else
-                {
-                    MessageBox.Show("Пожалуйста, выберите корректную роль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    await AllUsers.LoadDataGrid();
+                    MessageBox.Show("Пользователь успешно создан!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                     return;
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Ошибка выполнения: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (UserRepository.UpdateUser(user))
+                {
+                    await AllUsers.LoadDataGrid();
+                    MessageBox.Show("Пользователь успешно изменен!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                    return;
+                }
             }
         }
-        
     }
 }

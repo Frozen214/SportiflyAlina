@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Sportifly
 {
-    internal class Hashing
+    public class Hashing
     {
         public string Hash(string input)
         {
@@ -17,7 +14,6 @@ namespace Sportifly
                 byte[] hash = sha128.ComputeHash(passwordBytes);
                 return Convert.ToBase64String(hash);
             }
-
         }
     }
 }

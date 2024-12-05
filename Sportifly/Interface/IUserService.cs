@@ -1,15 +1,11 @@
 ﻿using Sportifly.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Sportifly.Interface
 {
-    internal interface IUserService
+    public interface IUserService
     {
         Task<List<UserModel>> GetUsersAsyc();
-        
     }
 }
