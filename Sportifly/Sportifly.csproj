@@ -98,11 +98,11 @@
     <Compile Include="Admin\EditUsers.Designer.cs">
       <DependentUpon>EditUsers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ForAdmin.cs">
+    <Compile Include="Admin\FormEditEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Admin\ForAdmin.Designer.cs">
-      <DependentUpon>ForAdmin.cs</DependentUpon>
+    <Compile Include="Admin\FormEditEmployee.Designer.cs">
+      <DependentUpon>FormEditEmployee.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\ReportsReceipts.cs">
       <SubType>Form</SubType>
@@ -110,29 +110,36 @@
     <Compile Include="Admin\ReportsReceipts.Designer.cs">
       <DependentUpon>ReportsReceipts.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\ChartManager.cs" />
-    <Compile Include="Classes\DB.cs" />
-    <Compile Include="Classes\FeedbackRepository.cs" />
-    <Compile Include="Classes\FeedbackValidator.cs" />
-    <Compile Include="Classes\ImageUploader.cs" />
-    <Compile Include="Classes\DataBaseAdmin.cs" />
-    <Compile Include="Classes\ReportAdmin.cs" />
-    <Compile Include="Classes\SmsSender.cs" />
-    <Compile Include="Classes\Validation.cs" />
-    <Compile Include="Classes\PersonalData.cs" />
+    <Compile Include="Common\ChartManager.cs" />
+    <Compile Include="Common\ConfirmAction.cs" />
+    <Compile Include="Common\ReceiptGenerator.cs" />
+    <Compile Include="Infrastructure\DataBase.cs" />
+    <Compile Include="Model\EmployeeModel.cs" />
+    <Compile Include="Model\PaymentDataModel.cs" />
+    <Compile Include="Repository\EmployeeRepository.cs" />
+    <Compile Include="Repository\FeedbackRepository.cs" />
+    <Compile Include="Repository\PaymentRepository.cs" />
+    <Compile Include="Repository\ServiceRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Validator\EmployeeValidator.cs" />
+    <Compile Include="Validator\FeedbackValidator.cs" />
+    <Compile Include="Common\ImageUploader.cs" />
+    <Compile Include="Common\SmsSender.cs" />
+    <Compile Include="Validator\UserValidator.cs" />
+    <Compile Include="Common\PersonalData.cs" />
     <Compile Include="Common\DGVPrinter.cs" />
     <Compile Include="DependencyConfig.cs" />
-    <Compile Include="ForgotPass\NewPass.cs">
+    <Compile Include="ForgotPass\FormNewPassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ForgotPass\NewPass.Designer.cs">
-      <DependentUpon>NewPass.cs</DependentUpon>
+    <Compile Include="ForgotPass\FormNewPassword.Designer.cs">
+      <DependentUpon>FormNewPassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="ForgotPass\Recovery.cs">
+    <Compile Include="ForgotPass\FormRecoveryAccess.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ForgotPass\Recovery.Designer.cs">
-      <DependentUpon>Recovery.cs</DependentUpon>
+    <Compile Include="ForgotPass\FormRecoveryAccess.Designer.cs">
+      <DependentUpon>FormRecoveryAccess.cs</DependentUpon>
     </Compile>
     <Compile Include="Hashing.cs" />
     <Compile Include="Infrastructure\ServiceLocator.cs" />
@@ -162,34 +169,34 @@
     </Compile>
     <Compile Include="Service\UserService.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <Compile Include="User\Feedback.cs">
+    <Compile Include="Client\FormFeedback.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User\Feedback.Designer.cs">
-      <DependentUpon>Feedback.cs</DependentUpon>
+    <Compile Include="Client\FormFeedback.Designer.cs">
+      <DependentUpon>FormFeedback.cs</DependentUpon>
     </Compile>
-    <Compile Include="User\LK.cs">
+    <Compile Include="Client\FormPersonalAccount.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User\LK.Designer.cs">
-      <DependentUpon>LK.cs</DependentUpon>
+    <Compile Include="Client\FormPersonalAccount.Designer.cs">
+      <DependentUpon>FormPersonalAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="User\ServicesCoach.cs">
+    <Compile Include="Client\FormService.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User\ServicesCoach.Designer.cs">
-      <DependentUpon>ServicesCoach.cs</DependentUpon>
+    <Compile Include="Client\FormService.Designer.cs">
+      <DependentUpon>FormService.cs</DependentUpon>
     </Compile>
-    <Compile Include="User\TechSupport.cs">
+    <Compile Include="Client\TechSupport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User\TechSupport.Designer.cs">
+    <Compile Include="Client\TechSupport.Designer.cs">
       <DependentUpon>TechSupport.cs</DependentUpon>
     </Compile>
-    <Compile Include="User\TrainingSessions.cs">
+    <Compile Include="Client\TrainingSessions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User\TrainingSessions.Designer.cs">
+    <Compile Include="Client\TrainingSessions.Designer.cs">
       <DependentUpon>TrainingSessions.cs</DependentUpon>
     </Compile>
     <Compile Include="Welcome.cs">
@@ -207,17 +214,17 @@
     <EmbeddedResource Include="Admin\EditUsers.resx">
       <DependentUpon>EditUsers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Admin\ForAdmin.resx">
-      <DependentUpon>ForAdmin.cs</DependentUpon>
+    <EmbeddedResource Include="Admin\FormEditEmployee.resx">
+      <DependentUpon>FormEditEmployee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\ReportsReceipts.resx">
       <DependentUpon>ReportsReceipts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ForgotPass\NewPass.resx">
-      <DependentUpon>NewPass.cs</DependentUpon>
+    <EmbeddedResource Include="ForgotPass\FormNewPassword.resx">
+      <DependentUpon>FormNewPassword.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ForgotPass\Recovery.resx">
-      <DependentUpon>Recovery.cs</DependentUpon>
+    <EmbeddedResource Include="ForgotPass\FormRecoveryAccess.resx">
+      <DependentUpon>FormRecoveryAccess.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -239,19 +246,19 @@
       <DependentUpon>Registr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report.rdlc" />
-    <EmbeddedResource Include="User\Feedback.resx">
-      <DependentUpon>Feedback.cs</DependentUpon>
+    <EmbeddedResource Include="Client\FormFeedback.resx">
+      <DependentUpon>FormFeedback.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User\LK.resx">
-      <DependentUpon>LK.cs</DependentUpon>
+    <EmbeddedResource Include="Client\FormPersonalAccount.resx">
+      <DependentUpon>FormPersonalAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User\ServicesCoach.resx">
-      <DependentUpon>ServicesCoach.cs</DependentUpon>
+    <EmbeddedResource Include="Client\FormService.resx">
+      <DependentUpon>FormService.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User\TechSupport.resx">
+    <EmbeddedResource Include="Client\TechSupport.resx">
       <DependentUpon>TechSupport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User\TrainingSessions.resx">
+    <EmbeddedResource Include="Client\TrainingSessions.resx">
       <DependentUpon>TrainingSessions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Welcome.resx">
@@ -271,9 +278,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UnitTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

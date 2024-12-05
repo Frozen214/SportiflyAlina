@@ -25,6 +25,7 @@ public class UserRepository : IUserRepository
                      ,[Хэш пароль] AS [UserPassword]
                      ,Роль AS [UserRole]
                      ,[Владелец аккаунта] AS [UserOwner]
+                     ,[РольId] as [RoleId]
                     FROM vw_Users");
     }
 }
