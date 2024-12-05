@@ -1,0 +1,6 @@
+@Sportifly.API_HostAddress = http://localhost:5239
+
+GET {{Sportifly.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
